@@ -8,10 +8,10 @@ namespace ToyStore
 {
     public class UserList
     {
-        public List<User> AllUsers { get; set; } = new List<User>();
+        public List <User> AllUsers { get; set; } = new List<User>();
 
 
-        public void AddNewUser(User user)
+        public void AddNewUser(User user) 
         {
             AllUsers.Add(user);
         }
@@ -23,11 +23,13 @@ namespace ToyStore
                 {
                     return user;
                 }
+
             }
+
 
             return null;
         }
 
-
+ 
     }
 }
