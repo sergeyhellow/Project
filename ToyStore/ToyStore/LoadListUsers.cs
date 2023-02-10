@@ -17,7 +17,7 @@ namespace ToyStore
         SqlConnection connection = new SqlConnection(@"Data Source = WIN-QR717S0F3HA\SQLEXPRESS; Initial catalog=Project; Integrated Security=true;");
         SqlDataAdapter adapter;
         DataSet data = new DataSet();
-        User user;
+        UserEx user;
         SqlCommand command;
 
 
@@ -33,7 +33,7 @@ namespace ToyStore
 
             foreach (DataRow row in table.Rows)
             {
-                 user = new User()
+                 user = new UserEx()
                 {
 
                     FirstName = row.ItemArray[1].ToString(),
@@ -49,11 +49,10 @@ namespace ToyStore
             
         }
 
-        public void SaveClient(User user)
+        public void SaveClient(UserEx user)
         {
             adapter = new SqlDataAdapter();
-            // command1 = new SqlCommand("update Passengers set FirstName = @pFirstName where Id = @pId;", connection);
-        
+              
            
          
            
@@ -79,27 +78,12 @@ namespace ToyStore
             MessageBox.Show("1");
             connection.Open();
             command.ExecuteNonQuery();
-          //  adapter.InsertCommand = command;
-          //  adapter.InsertCommand.ExecuteNonQuery();
-            MessageBox.Show("2");
+                     MessageBox.Show("2");
             connection.Close();
 
-            //adapter.Update(data);
-            MessageBox.Show("3");
+                     MessageBox.Show("3");
 
-/*
-            try
-            {
-                connection.Open();
-                adapter.InsertCommand = new SqlCommand(sql, connection);
-                adapter.InsertCommand.ExecuteNonQuery();
-                MessageBox.Show("Row inserted !! ");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-*/
+
 
 
 

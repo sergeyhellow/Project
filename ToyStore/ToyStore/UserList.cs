@@ -8,16 +8,16 @@ namespace ToyStore
 {
     public class UserList
     {
-        public List <User> AllUsers { get; set; } = new List<User>();
+        public List <UserEx> AllUsers { get; set; } = new List<UserEx>();
 
 
-        public void AddNewUser(User user) 
+        public void AddNewUser(UserEx user) 
         {
             AllUsers.Add(user);
         }
-        public User CheckUser(string login, string password)
+        public UserEx CheckUser(string login, string password)
         {
-            foreach (User user in AllUsers)
+            foreach (UserEx user in AllUsers)
             {
                 if (user.Login == login && user.Password == password)
                 {
