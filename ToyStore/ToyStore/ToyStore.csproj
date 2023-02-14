@@ -107,11 +107,23 @@
     <Compile Include="Views\AddToyForm.Designer.cs">
       <DependentUpon>AddToyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ListsOfToysForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ListsOfToysForm.Designer.cs">
+      <DependentUpon>ListsOfToysForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManageForms\AdminMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ManageForms\AdminMenuForm.Designer.cs">
+      <DependentUpon>AdminMenuForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ManageForms\AfterAutorisationForm.cs">
       <SubType>Form</SubType>
@@ -144,8 +156,14 @@
     <EmbeddedResource Include="Views\AddToyForm.resx">
       <DependentUpon>AddToyForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\ListsOfToysForm.resx">
+      <DependentUpon>ListsOfToysForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ManageForms\AdminMenuForm.resx">
+      <DependentUpon>AdminMenuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ManageForms\AfterAutorisationForm.resx">
       <DependentUpon>AfterAutorisationForm.cs</DependentUpon>
