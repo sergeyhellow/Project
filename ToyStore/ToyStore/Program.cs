@@ -17,7 +17,7 @@ namespace ToyStore
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ListsOfToysForm());
+            Application.Run(new MainForm());
         }
     }
 }
