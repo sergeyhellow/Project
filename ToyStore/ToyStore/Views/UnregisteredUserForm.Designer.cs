@@ -39,6 +39,7 @@
             // 
             // UnregUserDataGridView
             // 
+            this.UnregUserDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.UnregUserDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.UnregUserDataGridView.Location = new System.Drawing.Point(12, 132);
             this.UnregUserDataGridView.Name = "UnregUserDataGridView";
