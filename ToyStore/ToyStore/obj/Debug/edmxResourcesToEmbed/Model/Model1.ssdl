@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ProjectModelContext" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CountryOfOrigin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Prices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Toys_FK" Type="int" />
+    <Property Name="PriceSettingDate" Type="date" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="Sales">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Toys_FK" Type="int" />
+    <Property Name="Price_FK" Type="int" />
+    <Property Name="DataOfSale" Type="date" />
+  </EntityType>
+  <EntityType Name="StorrageOfToys">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Toys_FK" Type="int" />
+    <Property Name="Amount" Type="int" />
+    <Property Name="DateOfReceipt" Type="date" />
+    <Property Name="Soppliers_FK" Type="int" />
+  </EntityType>
+  <EntityType Name="ToyManufacturer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ManufactureName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Toys">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ToyWeight" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="NameOfToy" Type="nvarchar" MaxLength="50" />
+    <Property Name="Manufacturer_FK" Type="int" />
+    <Property Name="ToyTypes_FK" Type="int" />
+    <Property Name="CountryOfOrigin_FK" Type="int" />
+  </EntityType>
+  <EntityType Name="ToySoppliers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SopplierName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ToyTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeOfToy" Type="nvarchar" MaxLength="50" />
+    <Property Name="AgeOfTargetMin" Type="int" />
+    <Property Name="AgeOfTargetMax" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecondName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhoneNumber" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Role" Type="nvarchar" MaxLength="50" />
+    <Property Name="Login" Type="nvarchar" MaxLength="20" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK__Prices__Toys_FK__4316F928">
+    <End Role="Toys" Type="Self.Toys" Multiplicity="0..1" />
+    <End Role="Prices" Type="Self.Prices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Toys">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Prices">
+        <PropertyRef Name="Toys_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sales__Price_FK__4E88ABD4">
+    <End Role="Prices" Type="Self.Prices" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prices">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="Price_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sales__Toys_FK__4D94879B">
+    <End Role="Toys" Type="Self.Toys" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Toys">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="Toys_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StorrageO__Soppl__4AB81AF0">
+    <End Role="ToySoppliers" Type="Self.ToySoppliers" Multiplicity="0..1" />
+    <End Role="StorrageOfToys" Type="Self.StorrageOfToys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ToySoppliers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StorrageOfToys">
+        <PropertyRef Name="Soppliers_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StorrageO__Toys___49C3F6B7">
+    <End Role="Toys" Type="Self.Toys" Multiplicity="0..1" />
+    <End Role="StorrageOfToys" Type="Self.StorrageOfToys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Toys">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StorrageOfToys">
+        <PropertyRef Name="Toys_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Toys__CountryOfO__403A8C7D">
+    <End Role="CountryOfOrigin" Type="Self.CountryOfOrigin" Multiplicity="0..1" />
+    <End Role="Toys" Type="Self.Toys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountryOfOrigin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Toys">
+        <PropertyRef Name="CountryOfOrigin_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Toys__Manufactur__3E52440B">
+    <End Role="ToyManufacturer" Type="Self.ToyManufacturer" Multiplicity="0..1" />
+    <End Role="Toys" Type="Self.Toys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ToyManufacturer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Toys">
+        <PropertyRef Name="Manufacturer_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Toys__ToyTypes_F__3F466844">
+    <End Role="ToyTypes" Type="Self.ToyTypes" Multiplicity="0..1" />
+    <End Role="Toys" Type="Self.Toys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ToyTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Toys">
+        <PropertyRef Name="ToyTypes_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ProjectModelContextContainer">
+    <EntitySet Name="CountryOfOrigin" EntityType="Self.CountryOfOrigin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prices" EntityType="Self.Prices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StorrageOfToys" EntityType="Self.StorrageOfToys" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ToyManufacturer" EntityType="Self.ToyManufacturer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Toys" EntityType="Self.Toys" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ToySoppliers" EntityType="Self.ToySoppliers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ToyTypes" EntityType="Self.ToyTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Prices__Toys_FK__4316F928" Association="Self.FK__Prices__Toys_FK__4316F928">
+      <End Role="Toys" EntitySet="Toys" />
+      <End Role="Prices" EntitySet="Prices" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sales__Price_FK__4E88ABD4" Association="Self.FK__Sales__Price_FK__4E88ABD4">
+      <End Role="Prices" EntitySet="Prices" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sales__Toys_FK__4D94879B" Association="Self.FK__Sales__Toys_FK__4D94879B">
+      <End Role="Toys" EntitySet="Toys" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StorrageO__Soppl__4AB81AF0" Association="Self.FK__StorrageO__Soppl__4AB81AF0">
+      <End Role="ToySoppliers" EntitySet="ToySoppliers" />
+      <End Role="StorrageOfToys" EntitySet="StorrageOfToys" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StorrageO__Toys___49C3F6B7" Association="Self.FK__StorrageO__Toys___49C3F6B7">
+      <End Role="Toys" EntitySet="Toys" />
+      <End Role="StorrageOfToys" EntitySet="StorrageOfToys" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Toys__CountryOfO__403A8C7D" Association="Self.FK__Toys__CountryOfO__403A8C7D">
+      <End Role="CountryOfOrigin" EntitySet="CountryOfOrigin" />
+      <End Role="Toys" EntitySet="Toys" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Toys__Manufactur__3E52440B" Association="Self.FK__Toys__Manufactur__3E52440B">
+      <End Role="ToyManufacturer" EntitySet="ToyManufacturer" />
+      <End Role="Toys" EntitySet="Toys" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Toys__ToyTypes_F__3F466844" Association="Self.FK__Toys__ToyTypes_F__3F466844">
+      <End Role="ToyTypes" EntitySet="ToyTypes" />
+      <End Role="Toys" EntitySet="Toys" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

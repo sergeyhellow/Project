@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectModelContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CountryOfOrigin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Toys" Relationship="Self.FK__Toys__CountryOfO__403A8C7D" FromRole="CountryOfOrigin" ToRole="Toys" />
+  </EntityType>
+  <EntityType Name="Price">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Toys_FK" Type="Int32" />
+    <Property Name="PriceSettingDate" Type="DateTime" Precision="0" />
+    <Property Name="Price1" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Toy" Relationship="Self.FK__Prices__Toys_FK__4316F928" FromRole="Prices" ToRole="Toys" />
+    <NavigationProperty Name="Sales" Relationship="Self.FK__Sales__Price_FK__4E88ABD4" FromRole="Prices" ToRole="Sales" />
+  </EntityType>
+  <EntityType Name="Sale">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Toys_FK" Type="Int32" />
+    <Property Name="Price_FK" Type="Int32" />
+    <Property Name="DataOfSale" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Price" Relationship="Self.FK__Sales__Price_FK__4E88ABD4" FromRole="Sales" ToRole="Prices" />
+    <NavigationProperty Name="Toy" Relationship="Self.FK__Sales__Toys_FK__4D94879B" FromRole="Sales" ToRole="Toys" />
+  </EntityType>
+  <EntityType Name="StorrageOfToy">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Toys_FK" Type="Int32" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="DateOfReceipt" Type="DateTime" Precision="0" />
+    <Property Name="Soppliers_FK" Type="Int32" />
+    <NavigationProperty Name="ToySopplier" Relationship="Self.FK__StorrageO__Soppl__4AB81AF0" FromRole="StorrageOfToys" ToRole="ToySoppliers" />
+    <NavigationProperty Name="Toy" Relationship="Self.FK__StorrageO__Toys___49C3F6B7" FromRole="StorrageOfToys" ToRole="Toys" />
+  </EntityType>
+  <EntityType Name="ToyManufacturer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ManufactureName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Toys" Relationship="Self.FK__Toys__Manufactur__3E52440B" FromRole="ToyManufacturer" ToRole="Toys" />
+  </EntityType>
+  <EntityType Name="Toy">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ToyWeight" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NameOfToy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Manufacturer_FK" Type="Int32" />
+    <Property Name="ToyTypes_FK" Type="Int32" />
+    <Property Name="CountryOfOrigin_FK" Type="Int32" />
+    <NavigationProperty Name="CountryOfOrigin" Relationship="Self.FK__Toys__CountryOfO__403A8C7D" FromRole="Toys" ToRole="CountryOfOrigin" />
+    <NavigationProperty Name="Prices" Relationship="Self.FK__Prices__Toys_FK__4316F928" FromRole="Toys" ToRole="Prices" />
+    <NavigationProperty Name="Sales" Relationship="Self.FK__Sales__Toys_FK__4D94879B" FromRole="Toys" ToRole="Sales" />
+    <NavigationProperty Name="StorrageOfToys" Relationship="Self.FK__StorrageO__Toys___49C3F6B7" FromRole="Toys" ToRole="StorrageOfToys" />
+    <NavigationProperty Name="ToyManufacturer" Relationship="Self.FK__Toys__Manufactur__3E52440B" FromRole="Toys" ToRole="ToyManufacturer" />
+    <NavigationProperty Name="ToyType" Relationship="Self.FK__Toys__ToyTypes_F__3F466844" FromRole="Toys" ToRole="ToyTypes" />
+  </EntityType>
+  <EntityType Name="ToySopplier">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SopplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="StorrageOfToys" Relationship="Self.FK__StorrageO__Soppl__4AB81AF0" FromRole="ToySoppliers" ToRole="StorrageOfToys" />
+  </EntityType>
+  <EntityType Name="ToyType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeOfToy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AgeOfTargetMin" Type="Int32" />
+    <Property Name="AgeOfTargetMax" Type="Int32" />
+    <NavigationProperty Name="Toys" Relationship="Self.FK__Toys__ToyTypes_F__3F466844" FromRole="ToyTypes" ToRole="Toys" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecondName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK__Toys__CountryOfO__403A8C7D">
+    <End Role="CountryOfOrigin" Type="Self.CountryOfOrigin" Multiplicity="0..1" />
+    <End Role="Toys" Type="Self.Toy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountryOfOrigin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Toys">
+        <PropertyRef Name="CountryOfOrigin_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Prices__Toys_FK__4316F928">
+    <End Role="Toys" Type="Self.Toy" Multiplicity="0..1" />
+    <End Role="Prices" Type="Self.Price" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Toys">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Prices">
+        <PropertyRef Name="Toys_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sales__Price_FK__4E88ABD4">
+    <End Role="Prices" Type="Self.Price" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prices">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="Price_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sales__Toys_FK__4D94879B">
+    <End Role="Toys" Type="Self.Toy" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Toys">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="Toys_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StorrageO__Soppl__4AB81AF0">
+    <End Role="ToySoppliers" Type="Self.ToySopplier" Multiplicity="0..1" />
+    <End Role="StorrageOfToys" Type="Self.StorrageOfToy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ToySoppliers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StorrageOfToys">
+        <PropertyRef Name="Soppliers_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StorrageO__Toys___49C3F6B7">
+    <End Role="Toys" Type="Self.Toy" Multiplicity="0..1" />
+    <End Role="StorrageOfToys" Type="Self.StorrageOfToy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Toys">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StorrageOfToys">
+        <PropertyRef Name="Toys_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Toys__Manufactur__3E52440B">
+    <End Role="ToyManufacturer" Type="Self.ToyManufacturer" Multiplicity="0..1" />
+    <End Role="Toys" Type="Self.Toy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ToyManufacturer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Toys">
+        <PropertyRef Name="Manufacturer_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Toys__ToyTypes_F__3F466844">
+    <End Role="ToyTypes" Type="Self.ToyType" Multiplicity="0..1" />
+    <End Role="Toys" Type="Self.Toy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ToyTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Toys">
+        <PropertyRef Name="ToyTypes_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProjectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CountryOfOrigins" EntityType="Self.CountryOfOrigin" />
+    <EntitySet Name="Prices" EntityType="Self.Price" />
+    <EntitySet Name="Sales" EntityType="Self.Sale" />
+    <EntitySet Name="StorrageOfToys" EntityType="Self.StorrageOfToy" />
+    <EntitySet Name="ToyManufacturers" EntityType="Self.ToyManufacturer" />
+    <EntitySet Name="Toys" EntityType="Self.Toy" />
+    <EntitySet Name="ToySoppliers" EntityType="Self.ToySopplier" />
+    <EntitySet Name="ToyTypes" EntityType="Self.ToyType" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Toys__CountryOfO__403A8C7D" Association="Self.FK__Toys__CountryOfO__403A8C7D">
+      <End Role="CountryOfOrigin" EntitySet="CountryOfOrigins" />
+      <End Role="Toys" EntitySet="Toys" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Prices__Toys_FK__4316F928" Association="Self.FK__Prices__Toys_FK__4316F928">
+      <End Role="Toys" EntitySet="Toys" />
+      <End Role="Prices" EntitySet="Prices" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sales__Price_FK__4E88ABD4" Association="Self.FK__Sales__Price_FK__4E88ABD4">
+      <End Role="Prices" EntitySet="Prices" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sales__Toys_FK__4D94879B" Association="Self.FK__Sales__Toys_FK__4D94879B">
+      <End Role="Toys" EntitySet="Toys" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StorrageO__Soppl__4AB81AF0" Association="Self.FK__StorrageO__Soppl__4AB81AF0">
+      <End Role="ToySoppliers" EntitySet="ToySoppliers" />
+      <End Role="StorrageOfToys" EntitySet="StorrageOfToys" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StorrageO__Toys___49C3F6B7" Association="Self.FK__StorrageO__Toys___49C3F6B7">
+      <End Role="Toys" EntitySet="Toys" />
+      <End Role="StorrageOfToys" EntitySet="StorrageOfToys" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Toys__Manufactur__3E52440B" Association="Self.FK__Toys__Manufactur__3E52440B">
+      <End Role="ToyManufacturer" EntitySet="ToyManufacturers" />
+      <End Role="Toys" EntitySet="Toys" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Toys__ToyTypes_F__3F466844" Association="Self.FK__Toys__ToyTypes_F__3F466844">
+      <End Role="ToyTypes" EntitySet="ToyTypes" />
+      <End Role="Toys" EntitySet="Toys" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

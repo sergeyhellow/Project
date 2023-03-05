@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ProjectModelContextContainer" CdmEntityContainer="ProjectEntities">
+    <EntitySetMapping Name="CountryOfOrigins">
+      <EntityTypeMapping TypeName="ProjectModelContext.CountryOfOrigin">
+        <MappingFragment StoreEntitySet="CountryOfOrigin">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prices">
+      <EntityTypeMapping TypeName="ProjectModelContext.Price">
+        <MappingFragment StoreEntitySet="Prices">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Toys_FK" ColumnName="Toys_FK" />
+          <ScalarProperty Name="PriceSettingDate" ColumnName="PriceSettingDate" />
+          <ScalarProperty Name="Price1" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sales">
+      <EntityTypeMapping TypeName="ProjectModelContext.Sale">
+        <MappingFragment StoreEntitySet="Sales">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Toys_FK" ColumnName="Toys_FK" />
+          <ScalarProperty Name="Price_FK" ColumnName="Price_FK" />
+          <ScalarProperty Name="DataOfSale" ColumnName="DataOfSale" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StorrageOfToys">
+      <EntityTypeMapping TypeName="ProjectModelContext.StorrageOfToy">
+        <MappingFragment StoreEntitySet="StorrageOfToys">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Toys_FK" ColumnName="Toys_FK" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="DateOfReceipt" ColumnName="DateOfReceipt" />
+          <ScalarProperty Name="Soppliers_FK" ColumnName="Soppliers_FK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ToyManufacturers">
+      <EntityTypeMapping TypeName="ProjectModelContext.ToyManufacturer">
+        <MappingFragment StoreEntitySet="ToyManufacturer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ManufactureName" ColumnName="ManufactureName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Toys">
+      <EntityTypeMapping TypeName="ProjectModelContext.Toy">
+        <MappingFragment StoreEntitySet="Toys">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ToyWeight" ColumnName="ToyWeight" />
+          <ScalarProperty Name="NameOfToy" ColumnName="NameOfToy" />
+          <ScalarProperty Name="Manufacturer_FK" ColumnName="Manufacturer_FK" />
+          <ScalarProperty Name="ToyTypes_FK" ColumnName="ToyTypes_FK" />
+          <ScalarProperty Name="CountryOfOrigin_FK" ColumnName="CountryOfOrigin_FK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ToySoppliers">
+      <EntityTypeMapping TypeName="ProjectModelContext.ToySopplier">
+        <MappingFragment StoreEntitySet="ToySoppliers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SopplierName" ColumnName="SopplierName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ToyTypes">
+      <EntityTypeMapping TypeName="ProjectModelContext.ToyType">
+        <MappingFragment StoreEntitySet="ToyTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TypeOfToy" ColumnName="TypeOfToy" />
+          <ScalarProperty Name="AgeOfTargetMin" ColumnName="AgeOfTargetMin" />
+          <ScalarProperty Name="AgeOfTargetMax" ColumnName="AgeOfTargetMax" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="ProjectModelContext.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

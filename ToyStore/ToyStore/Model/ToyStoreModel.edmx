@@ -1,0 +1,588 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ToyStore" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CountryOfOrigin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Prices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Toys_FK" Type="int" />
+          <Property Name="PriceSettingDate" Type="date" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Sales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Toys_FK" Type="int" />
+          <Property Name="Price_FK" Type="int" />
+          <Property Name="DataOfSale" Type="date" />
+        </EntityType>
+        <EntityType Name="StorrageOfToys">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Toys_FK" Type="int" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="DateOfReceipt" Type="date" />
+          <Property Name="Soppliers_FK" Type="int" />
+        </EntityType>
+        <EntityType Name="ToyManufacturer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ManufactureName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Toys">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ToyWeight" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NameOfToy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Manufacturer_FK" Type="int" />
+          <Property Name="ToyTypes_FK" Type="int" />
+          <Property Name="CountryOfOrigin_FK" Type="int" />
+        </EntityType>
+        <EntityType Name="ToySoppliers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SopplierName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ToyTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeOfToy" Type="nvarchar" MaxLength="50" />
+          <Property Name="AgeOfTargetMin" Type="int" />
+          <Property Name="AgeOfTargetMax" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SecondName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="Login" Type="nvarchar" MaxLength="20" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK__Prices__Toys_FK__4316F928">
+          <End Role="Toys" Type="Self.Toys" Multiplicity="0..1" />
+          <End Role="Prices" Type="Self.Prices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Toys">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prices">
+              <PropertyRef Name="Toys_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sales__Price_FK__4E88ABD4">
+          <End Role="Prices" Type="Self.Prices" Multiplicity="0..1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="Price_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sales__Toys_FK__4D94879B">
+          <End Role="Toys" Type="Self.Toys" Multiplicity="0..1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Toys">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="Toys_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StorrageO__Soppl__4AB81AF0">
+          <End Role="ToySoppliers" Type="Self.ToySoppliers" Multiplicity="0..1" />
+          <End Role="StorrageOfToys" Type="Self.StorrageOfToys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ToySoppliers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StorrageOfToys">
+              <PropertyRef Name="Soppliers_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StorrageO__Toys___49C3F6B7">
+          <End Role="Toys" Type="Self.Toys" Multiplicity="0..1" />
+          <End Role="StorrageOfToys" Type="Self.StorrageOfToys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Toys">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StorrageOfToys">
+              <PropertyRef Name="Toys_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Toys__CountryOfO__403A8C7D">
+          <End Role="CountryOfOrigin" Type="Self.CountryOfOrigin" Multiplicity="0..1" />
+          <End Role="Toys" Type="Self.Toys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryOfOrigin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Toys">
+              <PropertyRef Name="CountryOfOrigin_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Toys__Manufactur__3E52440B">
+          <End Role="ToyManufacturer" Type="Self.ToyManufacturer" Multiplicity="0..1" />
+          <End Role="Toys" Type="Self.Toys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ToyManufacturer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Toys">
+              <PropertyRef Name="Manufacturer_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Toys__ToyTypes_F__3F466844">
+          <End Role="ToyTypes" Type="Self.ToyTypes" Multiplicity="0..1" />
+          <End Role="Toys" Type="Self.Toys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ToyTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Toys">
+              <PropertyRef Name="ToyTypes_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ToyStoreContainer">
+          <EntitySet Name="CountryOfOrigin" EntityType="Self.CountryOfOrigin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prices" EntityType="Self.Prices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StorrageOfToys" EntityType="Self.StorrageOfToys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToyManufacturer" EntityType="Self.ToyManufacturer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Toys" EntityType="Self.Toys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToySoppliers" EntityType="Self.ToySoppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToyTypes" EntityType="Self.ToyTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Prices__Toys_FK__4316F928" Association="Self.FK__Prices__Toys_FK__4316F928">
+            <End Role="Toys" EntitySet="Toys" />
+            <End Role="Prices" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sales__Price_FK__4E88ABD4" Association="Self.FK__Sales__Price_FK__4E88ABD4">
+            <End Role="Prices" EntitySet="Prices" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sales__Toys_FK__4D94879B" Association="Self.FK__Sales__Toys_FK__4D94879B">
+            <End Role="Toys" EntitySet="Toys" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StorrageO__Soppl__4AB81AF0" Association="Self.FK__StorrageO__Soppl__4AB81AF0">
+            <End Role="ToySoppliers" EntitySet="ToySoppliers" />
+            <End Role="StorrageOfToys" EntitySet="StorrageOfToys" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StorrageO__Toys___49C3F6B7" Association="Self.FK__StorrageO__Toys___49C3F6B7">
+            <End Role="Toys" EntitySet="Toys" />
+            <End Role="StorrageOfToys" EntitySet="StorrageOfToys" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Toys__CountryOfO__403A8C7D" Association="Self.FK__Toys__CountryOfO__403A8C7D">
+            <End Role="CountryOfOrigin" EntitySet="CountryOfOrigin" />
+            <End Role="Toys" EntitySet="Toys" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Toys__Manufactur__3E52440B" Association="Self.FK__Toys__Manufactur__3E52440B">
+            <End Role="ToyManufacturer" EntitySet="ToyManufacturer" />
+            <End Role="Toys" EntitySet="Toys" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Toys__ToyTypes_F__3F466844" Association="Self.FK__Toys__ToyTypes_F__3F466844">
+            <End Role="ToyTypes" EntitySet="ToyTypes" />
+            <End Role="Toys" EntitySet="Toys" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ToyStore" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CountryOfOrigin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Toys" Relationship="Self.FK__Toys__CountryOfO__403A8C7D" FromRole="CountryOfOrigin" ToRole="Toys" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Toys_FK" Type="Int32" />
+          <Property Name="PriceSettingDate" Type="DateTime" Precision="0" />
+          <Property Name="Price1" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Toy" Relationship="Self.FK__Prices__Toys_FK__4316F928" FromRole="Prices" ToRole="Toys" />
+          <NavigationProperty Name="Sales" Relationship="Self.FK__Sales__Price_FK__4E88ABD4" FromRole="Prices" ToRole="Sales" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Toys_FK" Type="Int32" />
+          <Property Name="Price_FK" Type="Int32" />
+          <Property Name="DataOfSale" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Price" Relationship="Self.FK__Sales__Price_FK__4E88ABD4" FromRole="Sales" ToRole="Prices" />
+          <NavigationProperty Name="Toy" Relationship="Self.FK__Sales__Toys_FK__4D94879B" FromRole="Sales" ToRole="Toys" />
+        </EntityType>
+        <EntityType Name="StorrageOfToy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Toys_FK" Type="Int32" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="DateOfReceipt" Type="DateTime" Precision="0" />
+          <Property Name="Soppliers_FK" Type="Int32" />
+          <NavigationProperty Name="ToySopplier" Relationship="Self.FK__StorrageO__Soppl__4AB81AF0" FromRole="StorrageOfToys" ToRole="ToySoppliers" />
+          <NavigationProperty Name="Toy" Relationship="Self.FK__StorrageO__Toys___49C3F6B7" FromRole="StorrageOfToys" ToRole="Toys" />
+        </EntityType>
+        <EntityType Name="ToyManufacturer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ManufactureName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Toys" Relationship="Self.FK__Toys__Manufactur__3E52440B" FromRole="ToyManufacturer" ToRole="Toys" />
+        </EntityType>
+        <EntityType Name="Toy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ToyWeight" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NameOfToy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Manufacturer_FK" Type="Int32" />
+          <Property Name="ToyTypes_FK" Type="Int32" />
+          <Property Name="CountryOfOrigin_FK" Type="Int32" />
+          <NavigationProperty Name="CountryOfOrigin" Relationship="Self.FK__Toys__CountryOfO__403A8C7D" FromRole="Toys" ToRole="CountryOfOrigin" />
+          <NavigationProperty Name="Prices" Relationship="Self.FK__Prices__Toys_FK__4316F928" FromRole="Toys" ToRole="Prices" />
+          <NavigationProperty Name="Sales" Relationship="Self.FK__Sales__Toys_FK__4D94879B" FromRole="Toys" ToRole="Sales" />
+          <NavigationProperty Name="StorrageOfToys" Relationship="Self.FK__StorrageO__Toys___49C3F6B7" FromRole="Toys" ToRole="StorrageOfToys" />
+          <NavigationProperty Name="ToyManufacturer" Relationship="Self.FK__Toys__Manufactur__3E52440B" FromRole="Toys" ToRole="ToyManufacturer" />
+          <NavigationProperty Name="ToyType" Relationship="Self.FK__Toys__ToyTypes_F__3F466844" FromRole="Toys" ToRole="ToyTypes" />
+        </EntityType>
+        <EntityType Name="ToySopplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SopplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StorrageOfToys" Relationship="Self.FK__StorrageO__Soppl__4AB81AF0" FromRole="ToySoppliers" ToRole="StorrageOfToys" />
+        </EntityType>
+        <EntityType Name="ToyType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeOfToy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AgeOfTargetMin" Type="Int32" />
+          <Property Name="AgeOfTargetMax" Type="Int32" />
+          <NavigationProperty Name="Toys" Relationship="Self.FK__Toys__ToyTypes_F__3F466844" FromRole="ToyTypes" ToRole="Toys" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SecondName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__Toys__CountryOfO__403A8C7D">
+          <End Role="CountryOfOrigin" Type="Self.CountryOfOrigin" Multiplicity="0..1" />
+          <End Role="Toys" Type="Self.Toy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryOfOrigin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Toys">
+              <PropertyRef Name="CountryOfOrigin_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prices__Toys_FK__4316F928">
+          <End Role="Toys" Type="Self.Toy" Multiplicity="0..1" />
+          <End Role="Prices" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Toys">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prices">
+              <PropertyRef Name="Toys_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sales__Price_FK__4E88ABD4">
+          <End Role="Prices" Type="Self.Price" Multiplicity="0..1" />
+          <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="Price_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sales__Toys_FK__4D94879B">
+          <End Role="Toys" Type="Self.Toy" Multiplicity="0..1" />
+          <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Toys">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="Toys_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StorrageO__Soppl__4AB81AF0">
+          <End Role="ToySoppliers" Type="Self.ToySopplier" Multiplicity="0..1" />
+          <End Role="StorrageOfToys" Type="Self.StorrageOfToy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ToySoppliers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StorrageOfToys">
+              <PropertyRef Name="Soppliers_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StorrageO__Toys___49C3F6B7">
+          <End Role="Toys" Type="Self.Toy" Multiplicity="0..1" />
+          <End Role="StorrageOfToys" Type="Self.StorrageOfToy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Toys">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StorrageOfToys">
+              <PropertyRef Name="Toys_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Toys__Manufactur__3E52440B">
+          <End Role="ToyManufacturer" Type="Self.ToyManufacturer" Multiplicity="0..1" />
+          <End Role="Toys" Type="Self.Toy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ToyManufacturer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Toys">
+              <PropertyRef Name="Manufacturer_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Toys__ToyTypes_F__3F466844">
+          <End Role="ToyTypes" Type="Self.ToyType" Multiplicity="0..1" />
+          <End Role="Toys" Type="Self.Toy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ToyTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Toys">
+              <PropertyRef Name="ToyTypes_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ToyStoreContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CountryOfOrigins" EntityType="Self.CountryOfOrigin" />
+          <EntitySet Name="Prices" EntityType="Self.Price" />
+          <EntitySet Name="Sales" EntityType="Self.Sale" />
+          <EntitySet Name="StorrageOfToys" EntityType="Self.StorrageOfToy" />
+          <EntitySet Name="ToyManufacturers" EntityType="Self.ToyManufacturer" />
+          <EntitySet Name="Toys" EntityType="Self.Toy" />
+          <EntitySet Name="ToySoppliers" EntityType="Self.ToySopplier" />
+          <EntitySet Name="ToyTypes" EntityType="Self.ToyType" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Toys__CountryOfO__403A8C7D" Association="Self.FK__Toys__CountryOfO__403A8C7D">
+            <End Role="CountryOfOrigin" EntitySet="CountryOfOrigins" />
+            <End Role="Toys" EntitySet="Toys" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prices__Toys_FK__4316F928" Association="Self.FK__Prices__Toys_FK__4316F928">
+            <End Role="Toys" EntitySet="Toys" />
+            <End Role="Prices" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sales__Price_FK__4E88ABD4" Association="Self.FK__Sales__Price_FK__4E88ABD4">
+            <End Role="Prices" EntitySet="Prices" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sales__Toys_FK__4D94879B" Association="Self.FK__Sales__Toys_FK__4D94879B">
+            <End Role="Toys" EntitySet="Toys" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StorrageO__Soppl__4AB81AF0" Association="Self.FK__StorrageO__Soppl__4AB81AF0">
+            <End Role="ToySoppliers" EntitySet="ToySoppliers" />
+            <End Role="StorrageOfToys" EntitySet="StorrageOfToys" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StorrageO__Toys___49C3F6B7" Association="Self.FK__StorrageO__Toys___49C3F6B7">
+            <End Role="Toys" EntitySet="Toys" />
+            <End Role="StorrageOfToys" EntitySet="StorrageOfToys" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Toys__Manufactur__3E52440B" Association="Self.FK__Toys__Manufactur__3E52440B">
+            <End Role="ToyManufacturer" EntitySet="ToyManufacturers" />
+            <End Role="Toys" EntitySet="Toys" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Toys__ToyTypes_F__3F466844" Association="Self.FK__Toys__ToyTypes_F__3F466844">
+            <End Role="ToyTypes" EntitySet="ToyTypes" />
+            <End Role="Toys" EntitySet="Toys" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ToyStoreContainer" CdmEntityContainer="ToyStoreContext">
+          <EntitySetMapping Name="CountryOfOrigins">
+            <EntityTypeMapping TypeName="ToyStore.CountryOfOrigin">
+              <MappingFragment StoreEntitySet="CountryOfOrigin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prices">
+            <EntityTypeMapping TypeName="ToyStore.Price">
+              <MappingFragment StoreEntitySet="Prices">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Toys_FK" ColumnName="Toys_FK" />
+                <ScalarProperty Name="PriceSettingDate" ColumnName="PriceSettingDate" />
+                <ScalarProperty Name="Price1" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sales">
+            <EntityTypeMapping TypeName="ToyStore.Sale">
+              <MappingFragment StoreEntitySet="Sales">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Toys_FK" ColumnName="Toys_FK" />
+                <ScalarProperty Name="Price_FK" ColumnName="Price_FK" />
+                <ScalarProperty Name="DataOfSale" ColumnName="DataOfSale" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StorrageOfToys">
+            <EntityTypeMapping TypeName="ToyStore.StorrageOfToy">
+              <MappingFragment StoreEntitySet="StorrageOfToys">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Toys_FK" ColumnName="Toys_FK" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="DateOfReceipt" ColumnName="DateOfReceipt" />
+                <ScalarProperty Name="Soppliers_FK" ColumnName="Soppliers_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToyManufacturers">
+            <EntityTypeMapping TypeName="ToyStore.ToyManufacturer">
+              <MappingFragment StoreEntitySet="ToyManufacturer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ManufactureName" ColumnName="ManufactureName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Toys">
+            <EntityTypeMapping TypeName="ToyStore.Toy">
+              <MappingFragment StoreEntitySet="Toys">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ToyWeight" ColumnName="ToyWeight" />
+                <ScalarProperty Name="NameOfToy" ColumnName="NameOfToy" />
+                <ScalarProperty Name="Manufacturer_FK" ColumnName="Manufacturer_FK" />
+                <ScalarProperty Name="ToyTypes_FK" ColumnName="ToyTypes_FK" />
+                <ScalarProperty Name="CountryOfOrigin_FK" ColumnName="CountryOfOrigin_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToySoppliers">
+            <EntityTypeMapping TypeName="ToyStore.ToySopplier">
+              <MappingFragment StoreEntitySet="ToySoppliers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SopplierName" ColumnName="SopplierName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToyTypes">
+            <EntityTypeMapping TypeName="ToyStore.ToyType">
+              <MappingFragment StoreEntitySet="ToyTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TypeOfToy" ColumnName="TypeOfToy" />
+                <ScalarProperty Name="AgeOfTargetMin" ColumnName="AgeOfTargetMin" />
+                <ScalarProperty Name="AgeOfTargetMax" ColumnName="AgeOfTargetMax" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ToyStore.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
