@@ -134,6 +134,7 @@ namespace ToyStore.Views
                     break;
                 case 7:
                     SetStandartNamesToLabels();
+                    soppliers_comboBox.Enabled = true;
                     typeToy_comboBox.Enabled = false;
                     country_comboBox.Enabled = false;
                     manufacturer_comboBox.Enabled = false;
@@ -525,7 +526,7 @@ namespace ToyStore.Views
 
                 case 10:
                     if(priceMin_textBox.Text=="")
-                    { minP = 0; }
+                    { minP = -1; }
 
                     if (await selectService.SelectMostPopularToyForAge((int)minP, SelectToys_dataGridView))
                     {

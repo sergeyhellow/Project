@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using ToyStore.Model;
 
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -46,7 +45,7 @@ namespace ToyStore.UtilityClasses
             {
                 return await _context.ToyManufacturers.ToListAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -59,7 +58,7 @@ namespace ToyStore.UtilityClasses
             {
                 return await _context.ToyTypes.ToListAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -75,7 +74,7 @@ namespace ToyStore.UtilityClasses
             {
                 return await _context.CountryOfOrigins.ToListAsync();
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return null;
             }
@@ -88,7 +87,7 @@ namespace ToyStore.UtilityClasses
             {
                 return await _context.ToySoppliers.ToListAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -100,7 +99,7 @@ namespace ToyStore.UtilityClasses
             {
                 return await _context.Toys.ToListAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }

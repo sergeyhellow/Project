@@ -36,7 +36,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.SelectToys_dataGridView = new System.Windows.Forms.DataGridView();
             this.serch_button = new System.Windows.Forms.Button();
-            this.Exp_comboBox1 = new System.Windows.Forms.ComboBox();
             this.manufacturer_comboBox = new System.Windows.Forms.ComboBox();
             this.typeToy_comboBox = new System.Windows.Forms.ComboBox();
             this.soppliers_comboBox = new System.Windows.Forms.ComboBox();
@@ -80,7 +79,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1759, 647);
+            this.tabPage1.Size = new System.Drawing.Size(1246, 647);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Просмотр списков";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -130,7 +129,6 @@
             // 
             this.tabPage2.Controls.Add(this.SelectToys_dataGridView);
             this.tabPage2.Controls.Add(this.serch_button);
-            this.tabPage2.Controls.Add(this.Exp_comboBox1);
             this.tabPage2.Controls.Add(this.manufacturer_comboBox);
             this.tabPage2.Controls.Add(this.typeToy_comboBox);
             this.tabPage2.Controls.Add(this.soppliers_comboBox);
@@ -175,14 +173,6 @@
             this.serch_button.Text = "Поиск по выбранным парметрам ==>";
             this.serch_button.UseVisualStyleBackColor = true;
             this.serch_button.Click += new System.EventHandler(this.serch_button_Click);
-            // 
-            // Exp_comboBox1
-            // 
-            this.Exp_comboBox1.FormattingEnabled = true;
-            this.Exp_comboBox1.Location = new System.Drawing.Point(15, 554);
-            this.Exp_comboBox1.Name = "Exp_comboBox1";
-            this.Exp_comboBox1.Size = new System.Drawing.Size(250, 21);
-            this.Exp_comboBox1.TabIndex = 19;
             // 
             // manufacturer_comboBox
             // 
@@ -330,19 +320,20 @@
             this.searchParametr_comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.searchParametr_comboBox.FormattingEnabled = true;
             this.searchParametr_comboBox.Items.AddRange(new object[] {
-            "Найти игрушки в пределах заданной цены, можно указать вид игрушек",
-            "Найти игрушки выбранного производителя",
-            "Найти все игрушки с датой заданной датой оприходования на склад",
-            "Найти все игрушки с заданным весом, вцелом и по производителю",
-            "Найти все игрушки поступившие от заданного постащика",
-            "Найти долю игрушек дешевле указанной цены и для возраста, младше указанного",
-            "Оcобый поиск № 1 - игрушки от заданного поcтав-ка, чья стоимость больше, чем стои" +
-                "мость аданной игрушки, поступишей из заданной страны",
-            "Оcобый поиск № 2 - доля дешевых игрушек вцелом и по поставщику ",
-            "Особый поиск № 3- средняя цена игруше проданных за определенный период",
-            "Особый поиск № 4- найти все игрушки , чья стоимость выше, чем средняя стоимость и" +
-                "грушек заданного производителя",
-            "Особый поиск № 5- самый популярный вид игрушки для указанного возраста и в целом"});
+            "1. Найти игрушки в пределах заданной цены, можно указать вид игрушек",
+            "2. Найти игрушки выбранного производителя",
+            "3. Найти все игрушки с датой заданной датой оприходования на склад",
+            "4. Найти все игрушки с заданным весом, вцелом и по производителю",
+            "5. Найти все игрушки поступившие от заданного постащика",
+            "6. Найти долю игрушек дешевле указанной цены и для возраста, младше указанного",
+            "7. Оcобый поиск № 1 - игрушки от заданного поcтав-ка, чья стоимость больше, чем с" +
+                "тоимость аданной игрушки, поступишей из заданной страны",
+            "8. Оcобый поиск № 2 - доля дешевых игрушек вцелом и по поставщику ",
+            "9. Особый поиск № 3- средняя цена игруше проданных за определенный период",
+            "10. Особый поиск № 4- найти все игрушки , чья стоимость выше, чем средняя стоимос" +
+                "ть игрушек заданного производителя",
+            "11. Особый поиск № 5- самый популярный вид игрушки для указанного возраста и в це" +
+                "лом"});
             this.searchParametr_comboBox.Location = new System.Drawing.Point(15, 43);
             this.searchParametr_comboBox.Name = "searchParametr_comboBox";
             this.searchParametr_comboBox.Size = new System.Drawing.Size(1196, 21);
@@ -394,7 +385,6 @@
         private System.Windows.Forms.ComboBox typeToy_comboBox;
         private System.Windows.Forms.ComboBox soppliers_comboBox;
         private System.Windows.Forms.ComboBox country_comboBox;
-        private System.Windows.Forms.ComboBox Exp_comboBox1;
         private System.Windows.Forms.Button serch_button;
         private System.Windows.Forms.DataGridView SelectToys_dataGridView;
     }

@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Contexts;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -123,7 +124,7 @@ namespace ToyStore.UtilityClasses
                 return true;
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
                
                 return false;
@@ -165,7 +166,7 @@ namespace ToyStore.UtilityClasses
                      return true;
 
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
                     return false;
 
@@ -215,7 +216,7 @@ namespace ToyStore.UtilityClasses
                  
                     return true;
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
 
                     return false;
@@ -249,7 +250,7 @@ namespace ToyStore.UtilityClasses
                 return true;
             }
 
-            catch (Exception ex)
+            catch (Exception )
             {
                 return false;
             }
@@ -293,7 +294,7 @@ namespace ToyStore.UtilityClasses
               //  data.ForEach(a => lb.Items.Add(a));
                  return true;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return false;
             }
@@ -331,7 +332,7 @@ namespace ToyStore.UtilityClasses
                
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                
                return false;
@@ -373,7 +374,7 @@ namespace ToyStore.UtilityClasses
                 return true;
             }
 
-            catch (Exception ex)
+            catch (Exception )
             {
                 return false;
             }
@@ -427,7 +428,7 @@ namespace ToyStore.UtilityClasses
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             { 
             return false;
             }
@@ -470,7 +471,7 @@ namespace ToyStore.UtilityClasses
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return false;
             }
@@ -501,9 +502,9 @@ namespace ToyStore.UtilityClasses
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-              //  throw ex;
+              
                 return false;
             }
 
@@ -535,7 +536,7 @@ namespace ToyStore.UtilityClasses
                 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
               
                 return false;
@@ -567,7 +568,7 @@ namespace ToyStore.UtilityClasses
                 dataGrid.DataSource = toy;
                 return true;
             }
-            catch (Exception es)
+            catch (Exception )
             {
 
                 return false; 
@@ -578,6 +579,8 @@ namespace ToyStore.UtilityClasses
         public async Task<bool> SelectMostPopularToyForAge(int age, DataGridView gridView)
 
         {
+            if (age < 0)
+            { age = 100000; }
             try
             {
                 gridView.DataSource = await (from sales in _context.Sales
@@ -593,7 +596,7 @@ namespace ToyStore.UtilityClasses
                                      count = _context.Sales.Where(p => p.Toys_FK == ty.Id).Count(),
                                      toy = ty.NameOfToy,
                                      price = pr.Price1,
-                                     sum = _context.Sales.Count()
+                                   
 
 
                                  }).Distinct().OrderByDescending(p => p.count).ToListAsync();
@@ -601,7 +604,7 @@ namespace ToyStore.UtilityClasses
 
                 return true;
             }
-            catch (Exception es)
+            catch (Exception )
             {
 
                 return false;
@@ -638,7 +641,7 @@ namespace ToyStore.UtilityClasses
            return true;
             }
 
-            catch (Exception ex)
+            catch (Exception )
             {
                
                 return false;
@@ -665,9 +668,9 @@ namespace ToyStore.UtilityClasses
                 return true;
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+               
                 return false;
             }
         }
@@ -679,7 +682,7 @@ namespace ToyStore.UtilityClasses
                 dataGridView.DataSource = await (from s in _context.StorrageOfToys
                                                   join t in _context.Toys on s.Toys_FK equals t.Id
                                                   join ns in _context.ToySoppliers on s.Soppliers_FK equals ns.Id
-                                                  orderby ns.SopplierName
+                                                  orderby t.NameOfToy
                                                   select new
                                                   {
                                                       Name = t.NameOfToy,
@@ -691,9 +694,9 @@ namespace ToyStore.UtilityClasses
                 return true;
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                
                 return false;
             }
         }
@@ -712,9 +715,9 @@ namespace ToyStore.UtilityClasses
                 return true;
             }
 
-            catch (Exception ex)
+            catch (Exception )
             {
-                throw ex;
+                
                 return false;
             }
 
@@ -724,10 +727,10 @@ namespace ToyStore.UtilityClasses
         {
             try
             {
-                dataGridView.DataSource = await (from t in _context.Toys
-                                                 join p in _context.Prices on t.Id equals p.Toys_FK
+                dataGridView.DataSource = await (from p in _context.Prices 
+                                                 join t in _context.Toys on p.Toys_FK equals t.Id
                                                  where p.PriceSettingDate == _context.Prices.Where(p => p.Toys_FK == t.Id).Max(p => p.PriceSettingDate)
-                                                 orderby p.Price1
+                                                  orderby  p.Price1 descending
 
                                                  select new
 
@@ -741,9 +744,9 @@ namespace ToyStore.UtilityClasses
                 return true;
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+               
                 return false;
             }
 
@@ -771,9 +774,9 @@ namespace ToyStore.UtilityClasses
                 return true;
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+               
                 return false;
             }
 
@@ -804,9 +807,9 @@ namespace ToyStore.UtilityClasses
                 return true;
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+               
                 return false;
             }
 
@@ -839,9 +842,9 @@ namespace ToyStore.UtilityClasses
                 return true;
             }
 
-            catch (Exception ex)
+            catch (Exception )
             {
-                throw ex;
+                
                 return false;
             }
 
@@ -882,9 +885,9 @@ namespace ToyStore.UtilityClasses
                 return true;
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+               
                 return false;
             }
 

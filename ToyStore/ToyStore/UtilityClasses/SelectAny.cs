@@ -80,7 +80,7 @@ namespace ToyStore.UtilityClasses
                
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 
                 return false;
@@ -124,7 +124,7 @@ namespace ToyStore.UtilityClasses
                     return true;
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return false;
 

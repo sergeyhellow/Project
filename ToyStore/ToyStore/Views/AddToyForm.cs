@@ -18,8 +18,7 @@ namespace ToyStore.Views
     public partial class AddToyForm : Form
 
     {
-        //  private readonly ToyStoreContext _context;
-
+              
         List<StorrageOfToy> currentBatch = new List<StorrageOfToy>();
 
         ChekerCompletness cheker=new ChekerCompletness();
@@ -78,10 +77,13 @@ namespace ToyStore.Views
 
        private async void UpDateComboBox()
         {
+            Country_comboBox.Items.Clear();
+            Manuf_comboBox.Items.Clear();
+            TypToy_comboBox.Items.Clear();
+            ToyToST_comboBox.Items.Clear();
+
             var listOfCountry = await dbService.SelectCountry();
             listOfCountry.ForEach(c => Country_comboBox.Items.Add(c));
-
-
 
           var listOfManufacturer = await dbService.SelectManufacturer();
            listOfManufacturer.ForEach(m => Manuf_comboBox.Items.Add(m));
@@ -105,10 +107,10 @@ namespace ToyStore.Views
                 {
                     case 0:
 
-                     if ( await  addElements.AddCountry(name_textBox)==null)MessageBox.Show("Уже есть такой"); ;
+                     if ( await  addElements.AddCountry(name_textBox)==null)MessageBox.Show("Уже есть такой");
                       Directory_listBox.Items.Clear();
                       (await dbService.SelectCountry()).ForEach(c => Directory_listBox.Items.Add(c));
-
+                      UpDateComboBox();
 
                         break;
 
@@ -116,13 +118,19 @@ namespace ToyStore.Views
                        if(await addElements.AddSopplier(name_textBox)==null) MessageBox.Show("Уже есть такой"); ;
                         Directory_listBox.Items.Clear();
                         (await dbService.SelectToySopplier()).ForEach(c => Directory_listBox.Items.Add(c));
+                        UpDateComboBox();
+
                         break;
+                       
 
                     case 2:
                       if(await addElements.AddManufacturer(name_textBox)==null) MessageBox.Show("Уже есть такой");
                         Directory_listBox.Items.Clear();
                         (await dbService.SelectManufacturer()).ForEach(c => Directory_listBox.Items.Add(c));
+                        UpDateComboBox();
+
                         break;
+                     
 
                     case 3:
 

@@ -34,7 +34,7 @@ namespace ToyStore.UtilityClasses
         public async Task<CountryOfOrigin> AddCountry(TextBox tb)
         {
 
-            if (_context.CountryOfOrigins.FirstOrDefaultAsync(m => m.CountryName == tb.Text) == null)
+            if ((await(_context.CountryOfOrigins.FirstOrDefaultAsync(m => m.CountryName == tb.Text))) == null)
             {
                 CountryOfOrigin countryOfOrigin = new CountryOfOrigin()
                 {
@@ -58,7 +58,7 @@ namespace ToyStore.UtilityClasses
 
         public async Task<ToySopplier> AddSopplier(TextBox tb)
         {
-            if (_context.ToySoppliers.FirstOrDefaultAsync(m => m.SopplierName == tb.Text) == null)
+            if ((await(_context.ToySoppliers.FirstOrDefaultAsync(m => m.SopplierName == tb.Text))) == null)
             {
                 ToySopplier toySopplier = new ToySopplier
                 {
@@ -125,7 +125,7 @@ namespace ToyStore.UtilityClasses
                 int res = await _context.SaveChangesAsync();
                 if (res == 0)
                 {
-                    throw new Exception();
+                  
                     return false;
                 }
                 else
@@ -162,7 +162,7 @@ namespace ToyStore.UtilityClasses
                 int res = await _context.SaveChangesAsync();
                 if (res == 0)
                 {
-                    throw new Exception();
+                   
                     return false;
                 }
                 else
@@ -187,7 +187,7 @@ namespace ToyStore.UtilityClasses
                 currentBatch.Add(toyPartOfBatch);
                 return currentBatch;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -218,7 +218,7 @@ namespace ToyStore.UtilityClasses
                 int res = await _context.SaveChangesAsync();
                 if (res == 0)
                 {
-                    throw new Exception();
+                   
                     return false;
                 }
                 else
@@ -227,7 +227,7 @@ namespace ToyStore.UtilityClasses
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -256,7 +256,7 @@ namespace ToyStore.UtilityClasses
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -284,7 +284,7 @@ namespace ToyStore.UtilityClasses
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
